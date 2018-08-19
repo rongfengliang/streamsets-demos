@@ -1,0 +1,10 @@
+version: "3"
+services:
+   sets:
+     image: streamsets/datacollector 
+     volumes:
+     - "./ms/data:/data"
+     - "./ms/logs:/logs"
+     ports:
+     - "8000:8000"
+     - "18630:18630"
