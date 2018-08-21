@@ -17,12 +17,6 @@ docker cp data/ micro-service_sets_1:/data/excel
 
 * load steamsets configfiles
 
-![images](./images/info.png)
-
-* run
-
-![images](./images/load.png)
-
-![images](./images/run.png)
-
-
+```code
+file-split-redis/redis.json
+```
