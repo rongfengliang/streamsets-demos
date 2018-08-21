@@ -12,6 +12,8 @@ docker-compose up -d
 ```code
 project root directory
 
+tar xzvf gep.tar.gz
+
 docker cp geo/*  micro-service_sets_1:/data/geo/
 
 ```
