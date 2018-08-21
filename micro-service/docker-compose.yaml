@@ -5,6 +5,7 @@ services:
      volumes:
      - "./ms/data:/data"
      - "./ms/logs:/logs"
+     - "./ms/tmp:/tmp"
      ports:
      - "8000:8000"
      - "18630:18630"
