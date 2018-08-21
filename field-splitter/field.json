@@ -5,7 +5,7 @@
     "pipelineId" : "geoip60792094-ffdb-4fcc-9d9d-aa5e4fa03fb9",
     "title" : "geoip",
     "description" : "geoip",
-    "uuid" : "877868ff-b2d7-44b8-a582-437287757fbc",
+    "uuid" : "1dab8856-f900-4726-893a-c8681454d1dd",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -183,7 +183,7 @@
       "stageVersion" : "3",
       "configuration" : [ {
         "name" : "rawData",
-        "value" : "{\n  \"name\": \"demo\",\n  \"type\": \"a\"\n}"
+        "value" : "{\n  \"name\": \"demo\",\n  \"type\": \"a\",\n  \"index\":\"3\",\n  \"appinfo\":\"first,second\",\n  \"user\":{\n    \"name\":\"dalong\",\n    \"age\":33\n  }\n}"
       }, {
         "name" : "stopAfterFirstBatch",
         "value" : false
@@ -194,8 +194,8 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Dev Raw Data Source 1",
-        "xPos" : 37.865135192871094,
-        "yPos" : 232.54747009277344,
+        "xPos" : -310.8600444793701,
+        "yPos" : 229.8461456298828,
         "stageType" : "SOURCE"
       },
       "inputLanes" : [ ],
@@ -417,6 +417,108 @@
         } ]
       } ]
     }, {
+      "instanceName" : "FieldSplitter_01",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_splitter_SplitterDProcessor",
+      "stageVersion" : "2",
+      "configuration" : [ {
+        "name" : "fieldPath",
+        "value" : "/appinfo"
+      }, {
+        "name" : "separator",
+        "value" : ","
+      }, {
+        "name" : "fieldPathsForSplits",
+        "value" : [ "/firstname", "/secondname" ]
+      }, {
+        "name" : "onStagePreConditionFailure",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "tooManySplitsAction",
+        "value" : "TO_LAST_FIELD"
+      }, {
+        "name" : "remainingSplitsPath",
+        "value" : null
+      }, {
+        "name" : "originalFieldAction",
+        "value" : "REMOVE"
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Field Splitter 1",
+        "xPos" : -57.92987060546875,
+        "yPos" : 227.5,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "DevRawDataSource_01OutputLane15348279665370" ],
+      "outputLanes" : [ "FieldSplitter_01OutputLane15348306172900" ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "FieldTypeConverter_01",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_fieldtypeconverter_FieldTypeConverterDProcessor",
+      "stageVersion" : "2",
+      "configuration" : [ {
+        "name" : "convertBy",
+        "value" : "BY_FIELD"
+      }, {
+        "name" : "fieldTypeConverterConfigs",
+        "value" : [ {
+          "fields" : [ "/index" ],
+          "targetType" : "INTEGER",
+          "treatInputFieldAsDate" : false,
+          "dataLocale" : "en,US",
+          "scale" : -1,
+          "decimalScaleRoundingStrategy" : "ROUND_UNNECESSARY",
+          "dateFormat" : "YYYY_MM_DD",
+          "zonedDateTimeFormat" : "ISO_ZONED_DATE_TIME",
+          "encoding" : "UTF-8"
+        } ]
+      }, {
+        "name" : "wholeTypeConverterConfigs",
+        "value" : [ {
+          "sourceType" : "INTEGER",
+          "targetType" : "INTEGER",
+          "treatInputFieldAsDate" : false,
+          "dataLocale" : "en,US",
+          "scale" : -1,
+          "decimalScaleRoundingStrategy" : "ROUND_UNNECESSARY",
+          "dateFormat" : "YYYY_MM_DD",
+          "zonedDateTimeFormat" : "ISO_ZONED_DATE_TIME",
+          "encoding" : "UTF-8"
+        } ]
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "description" : "",
+        "label" : "Field Type Converter 1",
+        "xPos" : 157.47113037109375,
+        "yPos" : 228.51556396484375,
+        "stageType" : "PROCESSOR"
+      },
+      "inputLanes" : [ "FieldSplitter_01OutputLane15348306172900" ],
+      "outputLanes" : [ "FieldTypeConverter_01OutputLane15348293342290" ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
       "instanceName" : "StreamSelector_01",
       "library" : "streamsets-datacollector-basic-lib",
       "stageName" : "com_streamsets_pipeline_stage_processor_selector_SelectorDProcessor",
@@ -449,11 +551,11 @@
       "uiInfo" : {
         "description" : "",
         "label" : "Stream Selector 1",
-        "xPos" : 244.38787841796875,
-        "yPos" : 229.85073852539062,
+        "xPos" : 350.3361511230469,
+        "yPos" : 226.94805908203125,
         "stageType" : "PROCESSOR"
       },
-      "inputLanes" : [ "DevRawDataSource_01OutputLane15348279665370" ],
+      "inputLanes" : [ "FieldTypeConverter_01OutputLane15348293342290" ],
       "outputLanes" : [ "StreamSelector_01OutputLane1534828082691", "StreamSelector_01OutputLane1534827542263", "StreamSelector_01OutputLane1534827520949", "StreamSelector_01OutputLane1534827490771" ],
       "eventLanes" : [ ],
       "services" : [ ]
@@ -1245,11 +1347,11 @@
       "title" : "geoip",
       "description" : "geoip",
       "created" : 1534827152350,
-      "lastModified" : 1534828830861,
+      "lastModified" : 1534830723942,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "877868ff-b2d7-44b8-a582-437287757fbc",
+      "uuid" : "1dab8856-f900-4726-893a-c8681454d1dd",
       "valid" : true,
       "metadata" : {
         "labels" : [ ]
