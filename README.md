@@ -1,6 +1,6 @@
 # streamsets examples
 
-the exaples include pipeline && micro-service:
+this exaples include some basic pipeline demos:
 
 - [micro-service](./micro-service/README.md)
 - [directory-excel](./directory-excel/README.md)
