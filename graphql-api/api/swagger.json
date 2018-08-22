@@ -1,0 +1,5900 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "An Enterprise-Grade Approach to Managing Big Data in Motion",
+    "version": "1.0.0",
+    "title": "Data Collector RESTful API"
+  },
+  "basePath": "/rest",
+  "tags": [
+    {
+      "name": "acl"
+    },
+    {
+      "name": "activation"
+    },
+    {
+      "name": "system"
+    },
+    {
+      "name": "manager"
+    },
+    {
+      "name": "store"
+    },
+    {
+      "name": "preview"
+    },
+    {
+      "name": "definitions"
+    }
+  ],
+  "paths": {
+    "/v1/acl/{pipelineId}": {
+      "get": {
+        "tags": [
+          "acl"
+        ],
+        "summary": "Get Pipeline ACL",
+        "description": "",
+        "operationId": "getAcl",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "acl"
+        ],
+        "summary": "Update Pipeline ACL",
+        "description": "",
+        "operationId": "saveAcl",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/AclJson"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/v1/acl/pipelines/subjects": {
+      "get": {
+        "tags": [
+          "acl"
+        ],
+        "summary": "Get all Subjects in Pipeline ACL",
+        "description": "",
+        "operationId": "getSubjectsInAcls",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "acl"
+        ],
+        "summary": "Update Subjects in Pipeline ACL",
+        "description": "",
+        "operationId": "updateSubjectsInAcls",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/v1/acl/{pipelineId}/permissions": {
+      "get": {
+        "tags": [
+          "acl"
+        ],
+        "summary": "Return pipeline permissions for given pipeline ID",
+        "description": "",
+        "operationId": "getPermissions",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PermissionJson"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/activation": {
+      "get": {
+        "tags": [
+          "activation"
+        ],
+        "summary": "Returns SDC activation information",
+        "description": "",
+        "operationId": "getActivation",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "activation"
+        ],
+        "summary": "Uploads the SDC activation key",
+        "description": "",
+        "operationId": "updateActivation",
+        "consumes": [
+          "text/plain"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/system/users": {
+      "get": {
+        "tags": [
+          "system"
+        ],
+        "summary": "Returns All Users Info",
+        "description": "",
+        "operationId": "getUsers",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserJson"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/system/groups": {
+      "get": {
+        "tags": [
+          "system"
+        ],
+        "summary": "Returns All Group names",
+        "description": "",
+        "operationId": "getGroups",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserJson"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/system/restart": {
+      "post": {
+        "tags": [
+          "system"
+        ],
+        "summary": "Restart SDC",
+        "description": "",
+        "operationId": "restart",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/v1/system/enableDPM": {
+      "post": {
+        "tags": [
+          "system"
+        ],
+        "summary": "Enables DPM by getting application token from DPM",
+        "description": "",
+        "operationId": "enableDPM",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/DPMInfoJson"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/v1/system/disableDPM": {
+      "post": {
+        "tags": [
+          "system"
+        ],
+        "summary": "Disables DPM",
+        "description": "",
+        "operationId": "disableDPM",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/v1/system/createDPMUsers": {
+      "post": {
+        "tags": [
+          "system"
+        ],
+        "summary": "Create Users & Groups in DPM",
+        "description": "",
+        "operationId": "createDPMUsers",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/DPMInfoJson"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/v1/system/threads": {
+      "get": {
+        "tags": [
+          "system"
+        ],
+        "summary": "Returns Thread Dump along with stack trace",
+        "description": "",
+        "operationId": "getThreadsDump",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/system/directories": {
+      "get": {
+        "tags": [
+          "system"
+        ],
+        "summary": "Returns SDC Directories",
+        "description": "",
+        "operationId": "getSDCDirectories",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/system/bundle/list": {
+      "get": {
+        "tags": [
+          "system"
+        ],
+        "summary": "Return list of available content generators for support bundles.",
+        "description": "",
+        "operationId": "getSupportBundlesContentGenerators",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SupportBundleContentDefinitionJson"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/system/bundle/generate": {
+      "get": {
+        "tags": [
+          "system"
+        ],
+        "summary": "Generates a new support bundle.",
+        "description": "",
+        "operationId": "createSupportBundlesContentGenerators",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/octet-stream"
+        ],
+        "parameters": [
+          {
+            "name": "generators",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/v1/system/bundle/upload": {
+      "get": {
+        "tags": [
+          "system"
+        ],
+        "summary": "Generates new support bundle and uploads it to StreamSets.",
+        "description": "",
+        "operationId": "uploadSupportBundlesContentGenerators",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "generators",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/v1/system/shutdown": {
+      "post": {
+        "tags": [
+          "system"
+        ],
+        "summary": "Shutdown SDC",
+        "description": "",
+        "operationId": "shutdown",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/v1/system/configuration": {
+      "get": {
+        "tags": [
+          "system"
+        ],
+        "summary": "Returns ALL SDC Configuration",
+        "description": "",
+        "operationId": "getConfiguration",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/system/configuration/ui": {
+      "get": {
+        "tags": [
+          "system"
+        ],
+        "summary": "Returns UI SDC Configuration",
+        "description": "",
+        "operationId": "getUIConfiguration",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/system/info/id": {
+      "get": {
+        "tags": [
+          "system"
+        ],
+        "summary": "SDC id",
+        "description": "",
+        "operationId": "getSdcId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/system/stats": {
+      "get": {
+        "tags": [
+          "system"
+        ],
+        "summary": "Stats status",
+        "description": "",
+        "operationId": "getStatus",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "system"
+        ],
+        "summary": "Stats status change",
+        "description": "",
+        "operationId": "setStatus",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "active",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/system/info": {
+      "get": {
+        "tags": [
+          "system"
+        ],
+        "summary": "Returns SDC Info",
+        "description": "",
+        "operationId": "getBuildInfo",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/system/info/serverTime": {
+      "get": {
+        "tags": [
+          "system"
+        ],
+        "summary": "Returns Server Time",
+        "description": "",
+        "operationId": "getServerTime",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/system/info/remote": {
+      "get": {
+        "tags": [
+          "system"
+        ],
+        "summary": "Returns Remote Server Info",
+        "description": "",
+        "operationId": "getRemoteInfo",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/system/info/currentUser": {
+      "get": {
+        "tags": [
+          "system"
+        ],
+        "summary": "Returns User Info",
+        "description": "",
+        "operationId": "getUserInfo",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/system/logs": {
+      "get": {
+        "tags": [
+          "system"
+        ],
+        "summary": "Return latest log file contents",
+        "description": "",
+        "operationId": "currentLog",
+        "produces": [
+          "text/plain"
+        ],
+        "parameters": [
+          {
+            "name": "endingOffset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": -1,
+            "format": "int64"
+          },
+          {
+            "name": "extraMessage",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pipeline",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "severity",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/v1/system/logs/files": {
+      "get": {
+        "tags": [
+          "system"
+        ],
+        "summary": "Returns all available SDC Log files",
+        "description": "",
+        "operationId": "listLogFiles",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/system/logs/files/{logName}": {
+      "get": {
+        "tags": [
+          "system"
+        ],
+        "summary": "Returns SDC Log File Content",
+        "description": "",
+        "operationId": "getLogFile",
+        "produces": [
+          "text/plain"
+        ],
+        "parameters": [
+          {
+            "name": "logName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "attachment",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/system/log/config": {
+      "get": {
+        "tags": [
+          "system"
+        ],
+        "operationId": "getLogConfig",
+        "produces": [
+          "text/plain"
+        ],
+        "parameters": [
+          {
+            "name": "default",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "system"
+        ],
+        "operationId": "setLogConfig",
+        "consumes": [
+          "text/plain"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/InputStream"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/v1/pipeline/{pipelineId}/metrics": {
+      "get": {
+        "tags": [
+          "manager"
+        ],
+        "summary": "Return Pipeline Metrics",
+        "description": "",
+        "operationId": "getMetrics",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/MetricRegistryJson"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipeline/{pipelineId}/history": {
+      "get": {
+        "tags": [
+          "manager"
+        ],
+        "summary": "Find history by pipeline name",
+        "description": "",
+        "operationId": "getHistory",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "0"
+          },
+          {
+            "name": "fromBeginning",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PipelineStateJson"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "manager"
+        ],
+        "summary": "Delete history by pipeline name",
+        "description": "",
+        "operationId": "deleteHistory",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "0"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipeline/{pipelineId}/snapshot/{snapshotName}": {
+      "get": {
+        "tags": [
+          "manager"
+        ],
+        "summary": "Return Snapshot data",
+        "description": "",
+        "operationId": "getSnapshot",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "snapshotName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "0"
+          },
+          {
+            "name": "attachment",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/SnapshotDataJson"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "manager"
+        ],
+        "summary": "Update Snapshot Label",
+        "description": "",
+        "operationId": "updateSnapshotLabel",
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "snapshotName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "snapshotLabel",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "0"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "manager"
+        ],
+        "summary": "Capture Snapshot",
+        "description": "",
+        "operationId": "captureSnapshot",
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "snapshotName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "snapshotLabel",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "0"
+          },
+          {
+            "name": "batches",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 1,
+            "format": "int32"
+          },
+          {
+            "name": "batchSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 10,
+            "format": "int32"
+          },
+          {
+            "name": "startPipeline",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "manager"
+        ],
+        "summary": "Delete Snapshot data",
+        "description": "",
+        "operationId": "deleteSnapshot",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "snapshotName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "0"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipeline/{pipelineId}/stop": {
+      "post": {
+        "tags": [
+          "manager"
+        ],
+        "summary": "Stop Pipeline",
+        "description": "",
+        "operationId": "stopPipeline",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PipelineStateJson"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipeline/{pipelineId}/start": {
+      "post": {
+        "tags": [
+          "manager"
+        ],
+        "summary": "Start Pipeline",
+        "description": "",
+        "operationId": "startPipeline",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "0"
+          },
+          {
+            "in": "body",
+            "name": "runtimeParameters",
+            "description": "Runtime Parameters to override Pipeline Parameters value",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PipelineStateJson"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipeline/{pipelineId}/committedOffsets": {
+      "get": {
+        "tags": [
+          "manager"
+        ],
+        "summary": "Return Committed Offsets. Note: Returned offset format will change between releases.",
+        "description": "",
+        "operationId": "getCommittedOffsets",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/SourceOffsetJson"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "manager"
+        ],
+        "summary": "Update Pipeline Committed Offsets.",
+        "description": "",
+        "operationId": "updateCommittedOffsets",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "0"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/SourceOffsetJson"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipeline/{pipelineId}/resetOffset": {
+      "post": {
+        "tags": [
+          "manager"
+        ],
+        "summary": "Reset Origin Offset",
+        "description": "",
+        "operationId": "resetOffset",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "0"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipeline/{pipelineId}/alerts": {
+      "delete": {
+        "tags": [
+          "manager"
+        ],
+        "summary": "Delete alert by Pipeline name, revision and Alert ID",
+        "description": "",
+        "operationId": "deleteAlert",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "0"
+          },
+          {
+            "name": "alertId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipeline/{pipelineId}/snapshots": {
+      "get": {
+        "tags": [
+          "manager"
+        ],
+        "summary": "Returns Snapshot Info for the given pipeline",
+        "description": "",
+        "operationId": "getSnapshotsInfo",
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SnapshotInfoJson"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipeline/{pipelineId}/errorRecords": {
+      "get": {
+        "tags": [
+          "manager"
+        ],
+        "summary": "Returns error records by stage instance name and size",
+        "description": "",
+        "operationId": "getErrorRecords",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "0"
+          },
+          {
+            "name": "stageInstanceName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 10,
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RecordJson"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipeline/{pipelineId}/errorMessages": {
+      "get": {
+        "tags": [
+          "manager"
+        ],
+        "summary": "Returns error messages by stage instance name and size",
+        "description": "",
+        "operationId": "getErrorMessages",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "0"
+          },
+          {
+            "name": "stageInstanceName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 10,
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ErrorMessageJson"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipeline/{pipelineId}/sampledRecords": {
+      "get": {
+        "tags": [
+          "manager"
+        ],
+        "summary": "Returns Sampled records by sample ID and size",
+        "description": "",
+        "operationId": "getSampledRecords",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "0"
+          },
+          {
+            "name": "sampleId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sampleSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 10,
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SampledRecordJson"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipelines/status": {
+      "get": {
+        "tags": [
+          "manager"
+        ],
+        "summary": "Returns all Pipeline Status",
+        "description": "",
+        "operationId": "getAllPipelineStatus",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/PipelineStateJson"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipeline/{pipelineId}/status": {
+      "get": {
+        "tags": [
+          "manager"
+        ],
+        "summary": "Returns Pipeline Status for the given pipeline",
+        "description": "",
+        "operationId": "getPipelineStatus",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PipelineStateJson"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipelines/start": {
+      "post": {
+        "tags": [
+          "manager"
+        ],
+        "summary": "Start multiple Pipelines",
+        "description": "",
+        "operationId": "startPipelines",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/MultiStatusResponseJson"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipelines/stop": {
+      "post": {
+        "tags": [
+          "manager"
+        ],
+        "summary": "Stop multiple Pipelines",
+        "description": "",
+        "operationId": "stopPipelines",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/MultiStatusResponseJson"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipeline/{pipelineId}/forceStop": {
+      "post": {
+        "tags": [
+          "manager"
+        ],
+        "summary": "Force Stop Pipeline",
+        "description": "",
+        "operationId": "forceStopPipeline",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PipelineStateJson"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipelines/forceStop": {
+      "post": {
+        "tags": [
+          "manager"
+        ],
+        "summary": "Force Stop multiple Pipelines",
+        "description": "",
+        "operationId": "forceStopPipelines",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/MultiStatusResponseJson"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipelines/resetOffsets": {
+      "post": {
+        "tags": [
+          "manager"
+        ],
+        "summary": "Reset Origin Offset for multiple pipelines",
+        "description": "",
+        "operationId": "resetOffsets",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipelines/snapshots": {
+      "get": {
+        "tags": [
+          "manager"
+        ],
+        "summary": "Returns all Snapshot Info",
+        "description": "",
+        "operationId": "getAllSnapshotsInfo",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SnapshotInfoJson"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipeline/{pipelineId}/snapshot/{snapshotName}/status": {
+      "get": {
+        "tags": [
+          "manager"
+        ],
+        "summary": "Return Snapshot status",
+        "description": "",
+        "operationId": "getSnapshotStatus",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "snapshotName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/SnapshotInfoJson"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipelines/alerts": {
+      "get": {
+        "tags": [
+          "manager"
+        ],
+        "summary": "Returns alerts triggered for all pipelines",
+        "description": "",
+        "operationId": "getAllAlerts",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AlertInfoJson"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipelines": {
+      "get": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Returns all Pipeline Configuration Info",
+        "description": "",
+        "operationId": "getPipelines",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "filterText",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "label",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "format": "int32"
+          },
+          {
+            "name": "len",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": -1,
+            "format": "int32"
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "NAME",
+            "enum": [
+              "NAME",
+              "TITLE",
+              "LAST_MODIFIED",
+              "CREATED",
+              "CREATOR",
+              "STATUS"
+            ]
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "ASC",
+            "enum": [
+              "ASC",
+              "DESC"
+            ]
+          },
+          {
+            "name": "includeStatus",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PipelineInfoJson"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipeline/{pipelineId}/rules": {
+      "get": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Find Pipeline Rules by name and revision",
+        "description": "",
+        "operationId": "getPipelineRules",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/RuleDefinitionsJson"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Update an existing Pipeline Rules by name",
+        "description": "",
+        "operationId": "savePipelineRules",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "0"
+          },
+          {
+            "in": "body",
+            "name": "pipeline",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RuleDefinitionsJson"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/RuleDefinitionsJson"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/fragment/{pipelineFragmentTitle}": {
+      "put": {
+        "tags": [
+          "store"
+        ],
+        "operationId": "createPipelineFragment",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineFragmentTitle",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "draft",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/StageConfigurationJson"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/v1/pipeline/{pipelineId}": {
+      "get": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Find Pipeline Configuration by name and revision",
+        "description": "",
+        "operationId": "getPipelineInfo",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "0"
+          },
+          {
+            "name": "get",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "pipeline"
+          },
+          {
+            "name": "attachment",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PipelineConfigurationJson"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Update an existing Pipeline Configuration by name",
+        "description": "",
+        "operationId": "savePipeline",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "0"
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "pipeline",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PipelineConfigurationJson"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PipelineConfigurationJson"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Delete Pipeline Configuration by name",
+        "description": "",
+        "operationId": "deletePipeline",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipelines/count": {
+      "get": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Returns total Pipelines count",
+        "description": "",
+        "operationId": "getPipelinesCount",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipelines/systemLabels": {
+      "get": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Returns System Pipeline Labels",
+        "description": "",
+        "operationId": "getSystemPipelineLabels",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipelines/labels": {
+      "get": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Returns all Pipeline labels",
+        "description": "",
+        "operationId": "getPipelineLabels",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipelines/delete": {
+      "post": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Deletes Pipelines",
+        "description": "",
+        "operationId": "deletePipelines",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PipelineInfoJson"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipelines/deleteByFiltering": {
+      "post": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Deletes filtered Pipelines",
+        "description": "",
+        "operationId": "deletePipelinesByFiltering",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "filterText",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "label",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PipelineInfoJson"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipelines/export": {
+      "post": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Export Pipelines in single compressed archive",
+        "description": "",
+        "operationId": "exportPipelines",
+        "produces": [
+          "application/octet-stream"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "includeLibraryDefinitions",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipeline/{pipelineTitle}": {
+      "put": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Add a new Pipeline Configuration to the store",
+        "description": "",
+        "operationId": "createPipeline",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineTitle",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "autoGeneratePipelineId",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          },
+          {
+            "name": "draft",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          },
+          {
+            "name": "pipelineType",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "DATA_COLLECTOR"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PipelineConfigurationJson"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipeline/{pipelineId}/export": {
+      "get": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Export Pipeline Configuration & Rules by name and revision",
+        "description": "",
+        "operationId": "exportPipeline",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "0"
+          },
+          {
+            "name": "attachment",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          },
+          {
+            "name": "includeLibraryDefinitions",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PipelineEnvelopeJson"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipeline/{pipelineId}/import": {
+      "post": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Import Pipeline Configuration & Rules",
+        "description": "",
+        "operationId": "importPipeline",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "0"
+          },
+          {
+            "name": "overwrite",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          },
+          {
+            "name": "autoGeneratePipelineId",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          },
+          {
+            "name": "draft",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          },
+          {
+            "name": "includeLibraryDefinitions",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "in": "body",
+            "name": "pipelineEnvelope",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PipelineEnvelopeJson"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PipelineEnvelopeJson"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/fragment/{fragmentId}/import": {
+      "post": {
+        "tags": [
+          "store"
+        ],
+        "operationId": "importPipelineFragment",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "fragmentId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "draft",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "includeLibraryDefinitions",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PipelineFragmentEnvelopeJson"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/v1/pipelines/addLabels": {
+      "post": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Add labels to multiple Pipelines",
+        "description": "",
+        "operationId": "addLabelsToPipelines",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/AddLabelsRequestJson"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/MultiStatusResponseJson"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipelines/executable": {
+      "get": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Generate Edge Executable",
+        "description": "",
+        "operationId": "getEdgeExecutable",
+        "produces": [
+          "application/octet-stream"
+        ],
+        "parameters": [
+          {
+            "name": "edgeOs",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "darwin"
+          },
+          {
+            "name": "edgeArch",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "amd64"
+          },
+          {
+            "name": "pipelineIds",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipelines/publishToEdge": {
+      "post": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Upload pipelines to Data Collector Edge",
+        "description": "",
+        "operationId": "uploadToEdge",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipelines/downloadFromEdge": {
+      "post": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Download all pipelines from Data Collector Edge",
+        "description": "",
+        "operationId": "downloadFromEdge",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipeline/{pipelineId}/validate": {
+      "get": {
+        "tags": [
+          "preview"
+        ],
+        "summary": "Validate pipeline configuration and return validation status and issues",
+        "description": "",
+        "operationId": "validateConfigs",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "timeout",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 2000,
+            "format": "int64"
+          },
+          {
+            "name": "edge",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PreviewInfoJson"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipeline/{pipelineId}/preview": {
+      "post": {
+        "tags": [
+          "preview"
+        ],
+        "summary": "Run Pipeline preview",
+        "description": "",
+        "operationId": "previewWithOverride",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "batchSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 2147483647,
+            "format": "int32"
+          },
+          {
+            "name": "batches",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 1,
+            "format": "int32"
+          },
+          {
+            "name": "skipTargets",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "skipLifecycleEvents",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "endStage",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "timeout",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 2000,
+            "format": "int64"
+          },
+          {
+            "name": "edge",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          },
+          {
+            "name": "testOrigin",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          },
+          {
+            "in": "body",
+            "name": "stageOutputsToOverrideJson",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/StageOutputJson"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PreviewInfoJson"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipeline/{pipelineId}/preview/{previewerId}/status": {
+      "get": {
+        "tags": [
+          "preview"
+        ],
+        "summary": "Return Preview status by previewer ID",
+        "description": "",
+        "operationId": "getPreviewStatus",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "previewerId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "edge",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PreviewInfoJson"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipeline/{pipelineId}/preview/{previewerId}": {
+      "get": {
+        "tags": [
+          "preview"
+        ],
+        "summary": "Return Preview Data by previewer ID",
+        "description": "",
+        "operationId": "getPreviewData",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "previewerId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "edge",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PreviewOutputJson"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "preview"
+        ],
+        "summary": "Stop Preview by previewer ID",
+        "description": "",
+        "operationId": "stopPreview",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "previewerId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "edge",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PreviewInfoJson"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/pipeline/{pipelineId}/rawSourcePreview": {
+      "get": {
+        "tags": [
+          "preview"
+        ],
+        "summary": "Get raw source preview data for pipeline name and revision",
+        "description": "",
+        "operationId": "rawSourcePreview",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pipelineId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "rev",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/RawPreview"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/definitions/stages/{library}/{stageName}/icon": {
+      "get": {
+        "tags": [
+          "definitions"
+        ],
+        "summary": "Return stage icon for library and stage name",
+        "description": "",
+        "operationId": "getIcon",
+        "produces": [
+          "image/svg+xml",
+          "image/png"
+        ],
+        "parameters": [
+          {
+            "name": "library",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "stageName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/definitions": {
+      "get": {
+        "tags": [
+          "definitions"
+        ],
+        "summary": "Returns pipeline & stage configuration definitions",
+        "description": "",
+        "operationId": "getDefinitions",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/DefinitionsJson"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/stageLibraries/list": {
+      "get": {
+        "tags": [
+          "definitions"
+        ],
+        "summary": "Return list of libraries",
+        "description": "",
+        "operationId": "getLibraries",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "repoUrl",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "installedOnly",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/stageLibraries/install": {
+      "post": {
+        "tags": [
+          "definitions"
+        ],
+        "summary": "Install Stage libraries",
+        "description": "",
+        "operationId": "installLibraries",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "repoUrl",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/stageLibraries/uninstall": {
+      "post": {
+        "tags": [
+          "definitions"
+        ],
+        "summary": "Uninstall Stage libraries",
+        "description": "",
+        "operationId": "uninstallLibraries",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/stageLibraries/extras/list": {
+      "get": {
+        "tags": [
+          "definitions"
+        ],
+        "summary": "Return list of additional drivers",
+        "description": "",
+        "operationId": "getExtras",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "libraryId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/stageLibraries/extras/delete": {
+      "post": {
+        "tags": [
+          "definitions"
+        ],
+        "summary": "Delete additional drivers",
+        "description": "",
+        "operationId": "deleteExtras",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/StageLibraryExtrasJson"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/v1/stageLibraries/classpathHealth": {
+      "get": {
+        "tags": [
+          "definitions"
+        ],
+        "summary": "Validate health of classpath of all loaded stages.",
+        "description": "",
+        "operationId": "classpathHealth",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "AclJson": {
+      "type": "object",
+      "properties": {
+        "resourceId": {
+          "type": "string"
+        },
+        "resourceOwner": {
+          "type": "string"
+        },
+        "resourceCreatedTime": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "resourceType": {
+          "type": "string",
+          "enum": [
+            "PIPELINE"
+          ]
+        },
+        "lastModifiedBy": {
+          "type": "string"
+        },
+        "lastModifiedOn": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "permissions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PermissionJson"
+          }
+        }
+      }
+    },
+    "PermissionJson": {
+      "type": "object",
+      "properties": {
+        "subjectId": {
+          "type": "string"
+        },
+        "subjectType": {
+          "type": "string",
+          "enum": [
+            "USER",
+            "GROUP"
+          ]
+        },
+        "lastModifiedBy": {
+          "type": "string"
+        },
+        "lastModifiedOn": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "READ",
+              "WRITE",
+              "EXECUTE"
+            ]
+          }
+        }
+      }
+    },
+    "UserJson": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "DPMInfoJson": {
+      "type": "object",
+      "properties": {
+        "baseURL": {
+          "type": "string"
+        },
+        "userID": {
+          "type": "string"
+        },
+        "userPassword": {
+          "type": "string"
+        },
+        "organization": {
+          "type": "string"
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dpmUserList": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          }
+        },
+        "dpmGroupList": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "SupportBundleContentDefinitionJson": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "klass": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "enabledByDefault": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "InputStream": {
+      "type": "object"
+    },
+    "CounterJson": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "HistogramJson": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "max": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "mean": {
+          "type": "number",
+          "format": "double"
+        },
+        "min": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "p50": {
+          "type": "number",
+          "format": "double"
+        },
+        "p75": {
+          "type": "number",
+          "format": "double"
+        },
+        "p95": {
+          "type": "number",
+          "format": "double"
+        },
+        "p98": {
+          "type": "number",
+          "format": "double"
+        },
+        "p99": {
+          "type": "number",
+          "format": "double"
+        },
+        "p999": {
+          "type": "number",
+          "format": "double"
+        },
+        "stddev": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "MeterJson": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "m1_rate": {
+          "type": "number",
+          "format": "double"
+        },
+        "m5_rate": {
+          "type": "number",
+          "format": "double"
+        },
+        "m15_rate": {
+          "type": "number",
+          "format": "double"
+        },
+        "m30_rate": {
+          "type": "number",
+          "format": "double"
+        },
+        "h1_rate": {
+          "type": "number",
+          "format": "double"
+        },
+        "h6_rate": {
+          "type": "number",
+          "format": "double"
+        },
+        "h12_rate": {
+          "type": "number",
+          "format": "double"
+        },
+        "h24_rate": {
+          "type": "number",
+          "format": "double"
+        },
+        "mean_rate": {
+          "type": "number",
+          "format": "double"
+        },
+        "units": {
+          "type": "string"
+        }
+      }
+    },
+    "MetricRegistryJson": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "gauges": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "counters": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/CounterJson"
+          }
+        },
+        "histograms": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/HistogramJson"
+          }
+        },
+        "meters": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/MeterJson"
+          }
+        },
+        "timers": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/TimerJson"
+          }
+        },
+        "slaves": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "TimerJson": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "max": {
+          "type": "number",
+          "format": "double"
+        },
+        "mean": {
+          "type": "number",
+          "format": "double"
+        },
+        "min": {
+          "type": "number",
+          "format": "double"
+        },
+        "p50": {
+          "type": "number",
+          "format": "double"
+        },
+        "p75": {
+          "type": "number",
+          "format": "double"
+        },
+        "p95": {
+          "type": "number",
+          "format": "double"
+        },
+        "p98": {
+          "type": "number",
+          "format": "double"
+        },
+        "p99": {
+          "type": "number",
+          "format": "double"
+        },
+        "p999": {
+          "type": "number",
+          "format": "double"
+        },
+        "stddev": {
+          "type": "number",
+          "format": "double"
+        },
+        "m15_rate": {
+          "type": "number",
+          "format": "double"
+        },
+        "m1_rate": {
+          "type": "number",
+          "format": "double"
+        },
+        "m5_rate": {
+          "type": "number",
+          "format": "double"
+        },
+        "mean_rate": {
+          "type": "number",
+          "format": "double"
+        },
+        "duration_units": {
+          "type": "string"
+        },
+        "rate_units": {
+          "type": "string"
+        }
+      }
+    },
+    "PipelineStateJson": {
+      "type": "object",
+      "properties": {
+        "pipelineId": {
+          "type": "string",
+          "readOnly": true
+        },
+        "rev": {
+          "type": "string",
+          "readOnly": true
+        },
+        "user": {
+          "type": "string",
+          "readOnly": true
+        },
+        "status": {
+          "type": "string",
+          "readOnly": true,
+          "enum": [
+            "EDITED",
+            "STARTING",
+            "STARTING_ERROR",
+            "START_ERROR",
+            "RUNNING",
+            "RUNNING_ERROR",
+            "RUN_ERROR",
+            "FINISHING",
+            "FINISHED",
+            "RETRY",
+            "KILLED",
+            "STOPPING",
+            "STOPPED",
+            "STOPPING_ERROR",
+            "STOP_ERROR",
+            "DISCONNECTING",
+            "DISCONNECTED",
+            "CONNECTING",
+            "CONNECT_ERROR",
+            "DELETED"
+          ]
+        },
+        "message": {
+          "type": "string",
+          "readOnly": true
+        },
+        "timeStamp": {
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "attributes": {
+          "type": "object",
+          "readOnly": true,
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "executionMode": {
+          "type": "string",
+          "readOnly": true,
+          "enum": [
+            "STANDALONE",
+            "CLUSTER",
+            "CLUSTER_BATCH",
+            "CLUSTER_YARN_STREAMING",
+            "CLUSTER_MESOS_STREAMING",
+            "SLAVE",
+            "EDGE",
+            "EMR_BATCH"
+          ]
+        },
+        "metrics": {
+          "type": "string",
+          "readOnly": true
+        },
+        "retryAttempt": {
+          "type": "integer",
+          "format": "int32",
+          "readOnly": true
+        },
+        "nextRetryTimeStamp": {
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
+    "SourceOffsetJson": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "offsets": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "ErrorMessageJson": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "nonLocalized": {
+          "type": "string"
+        },
+        "localized": {
+          "type": "string"
+        },
+        "errorStackTrace": {
+          "type": "string"
+        }
+      }
+    },
+    "HeaderJson": {
+      "type": "object",
+      "properties": {
+        "stageCreator": {
+          "type": "string",
+          "readOnly": true
+        },
+        "sourceId": {
+          "type": "string",
+          "readOnly": true
+        },
+        "stagesPath": {
+          "type": "string",
+          "readOnly": true
+        },
+        "trackingId": {
+          "type": "string",
+          "readOnly": true
+        },
+        "previousTrackingId": {
+          "type": "string",
+          "readOnly": true
+        },
+        "raw": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "type": "string",
+            "format": "byte"
+          }
+        },
+        "rawMimeType": {
+          "type": "string",
+          "readOnly": true
+        },
+        "errorDataCollectorId": {
+          "type": "string",
+          "readOnly": true
+        },
+        "errorPipelineName": {
+          "type": "string",
+          "readOnly": true
+        },
+        "errorStage": {
+          "type": "string",
+          "readOnly": true
+        },
+        "errorStageLabel": {
+          "type": "string",
+          "readOnly": true
+        },
+        "errorCode": {
+          "type": "string",
+          "readOnly": true
+        },
+        "errorMessage": {
+          "type": "string",
+          "readOnly": true
+        },
+        "errorTimestamp": {
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "errorStackTrace": {
+          "type": "string",
+          "readOnly": true
+        },
+        "errorJobId": {
+          "type": "string",
+          "readOnly": true
+        },
+        "values": {
+          "type": "object",
+          "readOnly": true,
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "RecordJson": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "readOnly": true,
+          "$ref": "#/definitions/HeaderJson"
+        },
+        "value": {
+          "type": "object",
+          "readOnly": true
+        }
+      }
+    },
+    "SnapshotDataJson": {
+      "type": "object",
+      "properties": {
+        "snapshotBatches": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/StageOutputJson"
+            }
+          }
+        }
+      }
+    },
+    "StageOutputJson": {
+      "type": "object",
+      "properties": {
+        "instanceName": {
+          "type": "string",
+          "readOnly": true
+        },
+        "output": {
+          "type": "object",
+          "readOnly": true,
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/RecordJson"
+            }
+          }
+        },
+        "errorRecords": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/definitions/RecordJson"
+          }
+        },
+        "stageErrors": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/definitions/ErrorMessageJson"
+          }
+        },
+        "eventRecords": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/definitions/RecordJson"
+          }
+        }
+      }
+    },
+    "SnapshotInfoJson": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "type": "string",
+          "readOnly": true
+        },
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "label": {
+          "type": "string",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "readOnly": true
+        },
+        "rev": {
+          "type": "string",
+          "readOnly": true
+        },
+        "timeStamp": {
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "inProgress": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "batchNumber": {
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        }
+      }
+    },
+    "SampledRecordJson": {
+      "type": "object",
+      "properties": {
+        "record": {
+          "$ref": "#/definitions/RecordJson"
+        },
+        "matchedCondition": {
+          "type": "boolean"
+        }
+      }
+    },
+    "MultiStatusResponseJson": {
+      "type": "object",
+      "properties": {
+        "successEntities": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "type": "object"
+          }
+        },
+        "errorMessages": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "AlertInfoJson": {
+      "type": "object",
+      "properties": {
+        "gauge": {
+          "$ref": "#/definitions/Gauge"
+        },
+        "ruleDefinition": {
+          "$ref": "#/definitions/RuleDefinition"
+        },
+        "pipelineName": {
+          "type": "string"
+        }
+      }
+    },
+    "Gauge": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "object"
+        }
+      }
+    },
+    "RuleDefinition": {
+      "type": "object",
+      "properties": {
+        "family": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "alertText": {
+          "type": "string"
+        },
+        "condition": {
+          "type": "string"
+        },
+        "sendEmail": {
+          "type": "boolean"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "valid": {
+          "type": "boolean"
+        },
+        "timestamp": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "PipelineInfoJson": {
+      "type": "object",
+      "properties": {
+        "pipelineId": {
+          "type": "string",
+          "readOnly": true
+        },
+        "title": {
+          "type": "string",
+          "readOnly": true
+        },
+        "description": {
+          "type": "string",
+          "readOnly": true
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "lastModified": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "creator": {
+          "type": "string",
+          "readOnly": true
+        },
+        "lastModifier": {
+          "type": "string",
+          "readOnly": true
+        },
+        "lastRev": {
+          "type": "string",
+          "readOnly": true
+        },
+        "uuid": {
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "valid": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "metadata": {
+          "type": "object",
+          "readOnly": true,
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "name": {
+          "type": "string",
+          "readOnly": true
+        },
+        "sdcVersion": {
+          "type": "string",
+          "readOnly": true
+        },
+        "sdcId": {
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
+    "ConfigConfigurationJson": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "readOnly": true
+        },
+        "value": {
+          "type": "object",
+          "readOnly": true
+        }
+      }
+    },
+    "DataRuleDefinitionJson": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "label": {
+          "type": "string",
+          "readOnly": true
+        },
+        "lane": {
+          "type": "string",
+          "readOnly": true
+        },
+        "samplingPercentage": {
+          "type": "number",
+          "format": "double",
+          "readOnly": true
+        },
+        "samplingRecordsToRetain": {
+          "type": "integer",
+          "format": "int32",
+          "readOnly": true
+        },
+        "condition": {
+          "type": "string",
+          "readOnly": true
+        },
+        "alertEnabled": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "alertText": {
+          "type": "string",
+          "readOnly": true
+        },
+        "thresholdType": {
+          "type": "string",
+          "readOnly": true,
+          "enum": [
+            "COUNT",
+            "PERCENTAGE"
+          ]
+        },
+        "thresholdValue": {
+          "type": "string",
+          "readOnly": true
+        },
+        "minVolume": {
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "meterEnabled": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "sendEmail": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "enabled": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "timestamp": {
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "valid": {
+          "type": "boolean"
+        }
+      }
+    },
+    "DriftRuleDefinitionJson": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "label": {
+          "type": "string",
+          "readOnly": true
+        },
+        "lane": {
+          "type": "string",
+          "readOnly": true
+        },
+        "samplingPercentage": {
+          "type": "number",
+          "format": "double",
+          "readOnly": true
+        },
+        "samplingRecordsToRetain": {
+          "type": "integer",
+          "format": "int32",
+          "readOnly": true
+        },
+        "condition": {
+          "type": "string",
+          "readOnly": true
+        },
+        "alertEnabled": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "alertText": {
+          "type": "string",
+          "readOnly": true
+        },
+        "meterEnabled": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "sendEmail": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "enabled": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "timestamp": {
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "valid": {
+          "type": "boolean"
+        }
+      }
+    },
+    "IssueJson": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "level": {
+          "type": "string"
+        },
+        "instanceName": {
+          "type": "string"
+        },
+        "additionalInfo": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "serviceName": {
+          "type": "string"
+        },
+        "configGroup": {
+          "type": "string"
+        },
+        "configName": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "MetricsRuleDefinitionJson": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "alertText": {
+          "type": "string",
+          "readOnly": true
+        },
+        "metricId": {
+          "type": "string",
+          "readOnly": true
+        },
+        "metricType": {
+          "type": "string",
+          "readOnly": true,
+          "enum": [
+            "GAUGE",
+            "COUNTER",
+            "HISTOGRAM",
+            "METER",
+            "TIMER"
+          ]
+        },
+        "metricElement": {
+          "type": "string",
+          "readOnly": true,
+          "enum": [
+            "COUNTER_COUNT",
+            "HISTOGRAM_COUNT",
+            "HISTOGRAM_MAX",
+            "HISTOGRAM_MIN",
+            "HISTOGRAM_MEAN",
+            "HISTOGRAM_MEDIAN",
+            "HISTOGRAM_P50",
+            "HISTOGRAM_P75",
+            "HISTOGRAM_P95",
+            "HISTOGRAM_P98",
+            "HISTOGRAM_P99",
+            "HISTOGRAM_P999",
+            "HISTOGRAM_STD_DEV",
+            "METER_COUNT",
+            "METER_M1_RATE",
+            "METER_M5_RATE",
+            "METER_M15_RATE",
+            "METER_M30_RATE",
+            "METER_H1_RATE",
+            "METER_H6_RATE",
+            "METER_H12_RATE",
+            "METER_H24_RATE",
+            "METER_MEAN_RATE",
+            "TIMER_COUNT",
+            "TIMER_MAX",
+            "TIMER_MIN",
+            "TIMER_MEAN",
+            "TIMER_P50",
+            "TIMER_P75",
+            "TIMER_P95",
+            "TIMER_P98",
+            "TIMER_P99",
+            "TIMER_P999",
+            "TIMER_STD_DEV",
+            "TIMER_M1_RATE",
+            "TIMER_M5_RATE",
+            "TIMER_M15_RATE",
+            "TIMER_MEAN_RATE",
+            "CURRENT_BATCH_AGE",
+            "TIME_IN_CURRENT_STAGE",
+            "TIME_OF_LAST_RECEIVED_RECORD",
+            "LAST_BATCH_INPUT_RECORDS_COUNT",
+            "LAST_BATCH_OUTPUT_RECORDS_COUNT",
+            "LAST_BATCH_ERROR_RECORDS_COUNT",
+            "LAST_BATCH_ERROR_MESSAGES_COUNT"
+          ]
+        },
+        "condition": {
+          "type": "string",
+          "readOnly": true
+        },
+        "sendEmail": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "enabled": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "timestamp": {
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "valid": {
+          "type": "boolean"
+        }
+      }
+    },
+    "RuleDefinitionsJson": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "type": "integer",
+          "format": "int32",
+          "readOnly": true
+        },
+        "version": {
+          "type": "integer",
+          "format": "int32",
+          "readOnly": true
+        },
+        "metricsRuleDefinitions": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/definitions/MetricsRuleDefinitionJson"
+          }
+        },
+        "dataRuleDefinitions": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/definitions/DataRuleDefinitionJson"
+          }
+        },
+        "driftRuleDefinitions": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/definitions/DriftRuleDefinitionJson"
+          }
+        },
+        "uuid": {
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "configuration": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/definitions/ConfigConfigurationJson"
+          }
+        },
+        "ruleIssues": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RuleIssueJson"
+          }
+        },
+        "configIssues": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IssueJson"
+          }
+        }
+      }
+    },
+    "RuleIssueJson": {
+      "type": "object",
+      "properties": {
+        "ruleId": {
+          "type": "string"
+        },
+        "additionalInfo": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "ServiceConfigurationJson": {
+      "type": "object",
+      "properties": {
+        "service": {
+          "type": "string",
+          "readOnly": true
+        },
+        "serviceVersion": {
+          "type": "integer",
+          "format": "int32",
+          "readOnly": true
+        },
+        "configuration": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/definitions/ConfigConfigurationJson"
+          }
+        }
+      }
+    },
+    "StageConfigurationJson": {
+      "type": "object",
+      "properties": {
+        "instanceName": {
+          "type": "string",
+          "readOnly": true
+        },
+        "library": {
+          "type": "string",
+          "readOnly": true
+        },
+        "stageName": {
+          "type": "string",
+          "readOnly": true
+        },
+        "stageVersion": {
+          "type": "string",
+          "readOnly": true
+        },
+        "configuration": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/definitions/ConfigConfigurationJson"
+          }
+        },
+        "uiInfo": {
+          "type": "object",
+          "readOnly": true,
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "inputLanes": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "outputLanes": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "eventLanes": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "services": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/definitions/ServiceConfigurationJson"
+          }
+        }
+      }
+    },
+    "IssuesJson": {
+      "type": "object",
+      "properties": {
+        "pipelineIssues": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IssueJson"
+          }
+        },
+        "issueCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "stageIssues": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/IssueJson"
+            }
+          }
+        }
+      }
+    },
+    "PipelineConfigurationJson": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "type": "integer",
+          "format": "int32",
+          "readOnly": true
+        },
+        "version": {
+          "type": "integer",
+          "format": "int32",
+          "readOnly": true
+        },
+        "pipelineId": {
+          "type": "string",
+          "readOnly": true
+        },
+        "title": {
+          "type": "string",
+          "readOnly": true
+        },
+        "description": {
+          "type": "string",
+          "readOnly": true
+        },
+        "uuid": {
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "configuration": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/definitions/ConfigConfigurationJson"
+          }
+        },
+        "uiInfo": {
+          "type": "object",
+          "readOnly": true,
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "fragments": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/definitions/PipelineFragmentConfigurationJson"
+          }
+        },
+        "stages": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/definitions/StageConfigurationJson"
+          }
+        },
+        "errorStage": {
+          "readOnly": true,
+          "$ref": "#/definitions/StageConfigurationJson"
+        },
+        "info": {
+          "readOnly": true,
+          "$ref": "#/definitions/PipelineInfoJson"
+        },
+        "metadata": {
+          "type": "object",
+          "readOnly": true,
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "statsAggregatorStage": {
+          "readOnly": true,
+          "$ref": "#/definitions/StageConfigurationJson"
+        },
+        "startEventStages": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/definitions/StageConfigurationJson"
+          }
+        },
+        "stopEventStages": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/definitions/StageConfigurationJson"
+          }
+        },
+        "testOriginStage": {
+          "readOnly": true,
+          "$ref": "#/definitions/StageConfigurationJson"
+        },
+        "valid": {
+          "type": "boolean"
+        },
+        "issues": {
+          "$ref": "#/definitions/IssuesJson"
+        },
+        "previewable": {
+          "type": "boolean"
+        }
+      }
+    },
+    "PipelineFragmentConfigurationJson": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "type": "integer",
+          "format": "int32",
+          "readOnly": true
+        },
+        "version": {
+          "type": "integer",
+          "format": "int32",
+          "readOnly": true
+        },
+        "fragmentId": {
+          "type": "string",
+          "readOnly": true
+        },
+        "fragmentInstanceId": {
+          "type": "string",
+          "readOnly": true
+        },
+        "title": {
+          "type": "string",
+          "readOnly": true
+        },
+        "description": {
+          "type": "string",
+          "readOnly": true
+        },
+        "uuid": {
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "configuration": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/definitions/ConfigConfigurationJson"
+          }
+        },
+        "uiInfo": {
+          "type": "object",
+          "readOnly": true,
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "stages": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/definitions/StageConfigurationJson"
+          }
+        },
+        "info": {
+          "readOnly": true,
+          "$ref": "#/definitions/PipelineInfoJson"
+        },
+        "metadata": {
+          "type": "object",
+          "readOnly": true,
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "testOriginStage": {
+          "readOnly": true,
+          "$ref": "#/definitions/StageConfigurationJson"
+        },
+        "valid": {
+          "type": "boolean"
+        },
+        "issues": {
+          "$ref": "#/definitions/IssuesJson"
+        },
+        "previewable": {
+          "type": "boolean"
+        },
+        "fragments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PipelineFragmentConfigurationJson"
+          }
+        }
+      }
+    },
+    "ConfigDefinitionJson": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "type": "string"
+        },
+        "fieldName": {
+          "type": "string"
+        },
+        "max": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "description": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "min": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "label": {
+          "type": "string"
+        },
+        "group": {
+          "type": "string"
+        },
+        "elDefs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "elFunctionDefinitionsIdx": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "elConstantDefinitionsIdx": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dependsOnMap": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        },
+        "dependsOn": {
+          "type": "string"
+        },
+        "evaluation": {
+          "type": "string",
+          "enum": [
+            "IMPLICIT",
+            "EXPLICIT"
+          ]
+        },
+        "model": {
+          "$ref": "#/definitions/ModelDefinitionJson"
+        },
+        "lines": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "triggeredByValues": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "displayPosition": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "BOOLEAN",
+            "NUMBER",
+            "STRING",
+            "LIST",
+            "MAP",
+            "MODEL",
+            "CHARACTER",
+            "TEXT",
+            "CREDENTIAL",
+            "RUNTIME"
+          ]
+        },
+        "defaultValue": {
+          "type": "object"
+        }
+      }
+    },
+    "ConfigGroupDefinitionJson": {
+      "type": "object",
+      "properties": {
+        "classNameToGroupsMap": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "groupNameToLabelMapList": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "DefinitionsJson": {
+      "type": "object",
+      "properties": {
+        "pipeline": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PipelineDefinitionJson"
+          }
+        },
+        "pipelineFragment": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PipelineFragmentDefinitionJson"
+          }
+        },
+        "pipelineRules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PipelineRulesDefinitionJson"
+          }
+        },
+        "stages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/StageDefinitionJson"
+          }
+        },
+        "services": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ServiceDefinitionJson"
+          }
+        },
+        "rulesElMetadata": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "elCatalog": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "runtimeConfigs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "object"
+          }
+        },
+        "stageIcons": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "ModelDefinitionJson": {
+      "type": "object",
+      "properties": {
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "configDefinitions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ConfigDefinitionJson"
+          }
+        },
+        "modelType": {
+          "type": "string",
+          "enum": [
+            "FIELD_SELECTOR_MULTI_VALUE",
+            "FIELD_SELECTOR",
+            "FIELD_VALUE_CHOOSER",
+            "VALUE_CHOOSER",
+            "MULTI_VALUE_CHOOSER",
+            "PREDICATE",
+            "LIST_BEAN"
+          ]
+        },
+        "valuesProviderClass": {
+          "type": "string"
+        },
+        "filteringConfig": {
+          "type": "string"
+        }
+      }
+    },
+    "PipelineDefinitionJson": {
+      "type": "object",
+      "properties": {
+        "configDefinitions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ConfigDefinitionJson"
+          }
+        },
+        "configGroupDefinition": {
+          "$ref": "#/definitions/ConfigGroupDefinitionJson"
+        }
+      }
+    },
+    "PipelineEnvelopeJson": {
+      "type": "object",
+      "properties": {
+        "pipelineConfig": {
+          "$ref": "#/definitions/PipelineConfigurationJson"
+        },
+        "pipelineRules": {
+          "$ref": "#/definitions/RuleDefinitionsJson"
+        },
+        "libraryDefinitions": {
+          "readOnly": true,
+          "$ref": "#/definitions/DefinitionsJson"
+        }
+      }
+    },
+    "PipelineFragmentDefinitionJson": {
+      "type": "object",
+      "properties": {
+        "configDefinitions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ConfigDefinitionJson"
+          }
+        },
+        "configGroupDefinition": {
+          "$ref": "#/definitions/ConfigGroupDefinitionJson"
+        }
+      }
+    },
+    "PipelineRulesDefinitionJson": {
+      "type": "object",
+      "properties": {
+        "configDefinitions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ConfigDefinitionJson"
+          }
+        },
+        "configGroupDefinition": {
+          "$ref": "#/definitions/ConfigGroupDefinitionJson"
+        }
+      }
+    },
+    "RawSourceDefinitionJson": {
+      "type": "object",
+      "properties": {
+        "configDefinitions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ConfigDefinitionJson"
+          }
+        },
+        "rawSourcePreviewerClass": {
+          "type": "string"
+        },
+        "mimeType": {
+          "type": "string"
+        }
+      }
+    },
+    "ServiceDefinitionJson": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "privateClassLoader": {
+          "type": "boolean"
+        },
+        "provides": {
+          "type": "string"
+        },
+        "library": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "libraryLabel": {
+          "type": "string"
+        },
+        "configDefinitions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ConfigDefinitionJson"
+          }
+        },
+        "configGroupDefinition": {
+          "$ref": "#/definitions/ConfigGroupDefinitionJson"
+        },
+        "className": {
+          "type": "string"
+        }
+      }
+    },
+    "ServiceDependencyDefinitionJson": {
+      "type": "object",
+      "properties": {
+        "service": {
+          "type": "string"
+        },
+        "configuration": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "StageDefinitionJson": {
+      "type": "object",
+      "properties": {
+        "icon": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "privateClassLoader": {
+          "type": "boolean"
+        },
+        "services": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ServiceDependencyDefinitionJson"
+          }
+        },
+        "library": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "libraryLabel": {
+          "type": "string"
+        },
+        "configDefinitions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ConfigDefinitionJson"
+          }
+        },
+        "configGroupDefinition": {
+          "$ref": "#/definitions/ConfigGroupDefinitionJson"
+        },
+        "rawSourceDefinition": {
+          "$ref": "#/definitions/RawSourceDefinitionJson"
+        },
+        "errorStage": {
+          "type": "boolean"
+        },
+        "statsAggregatorStage": {
+          "type": "boolean"
+        },
+        "pipelineLifecycleStage": {
+          "type": "boolean"
+        },
+        "offsetCommitTrigger": {
+          "type": "boolean"
+        },
+        "variableOutputStreams": {
+          "type": "boolean"
+        },
+        "outputStreams": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "outputStreamLabelProviderClass": {
+          "type": "string"
+        },
+        "outputStreamLabels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "executionModes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "STANDALONE",
+              "CLUSTER",
+              "CLUSTER_BATCH",
+              "CLUSTER_YARN_STREAMING",
+              "CLUSTER_MESOS_STREAMING",
+              "SLAVE",
+              "EDGE",
+              "EMR_BATCH"
+            ]
+          }
+        },
+        "resetOffset": {
+          "type": "boolean"
+        },
+        "onlineHelpRefUrl": {
+          "type": "string"
+        },
+        "hideStage": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "SOURCE",
+            "PROCESSOR",
+            "EXECUTOR",
+            "TARGET"
+          ]
+        },
+        "className": {
+          "type": "string"
+        },
+        "onRecordError": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "producingEvents": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "preconditions": {
+          "type": "boolean",
+          "readOnly": true
+        }
+      }
+    },
+    "PipelineFragmentEnvelopeJson": {
+      "type": "object",
+      "properties": {
+        "pipelineFragmentConfig": {
+          "$ref": "#/definitions/PipelineFragmentConfigurationJson"
+        },
+        "pipelineRules": {
+          "$ref": "#/definitions/RuleDefinitionsJson"
+        },
+        "libraryDefinitions": {
+          "readOnly": true,
+          "$ref": "#/definitions/DefinitionsJson"
+        }
+      }
+    },
+    "AddLabelsRequestJson": {
+      "type": "object",
+      "properties": {
+        "labels": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "pipelineNames": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "PreviewInfoJson": {
+      "type": "object",
+      "properties": {
+        "previewerId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "CREATED",
+            "VALIDATING",
+            "VALID",
+            "INVALID",
+            "VALIDATION_ERROR",
+            "STARTING",
+            "START_ERROR",
+            "RUNNING",
+            "RUN_ERROR",
+            "FINISHING",
+            "FINISHED",
+            "CANCELLING",
+            "CANCELLED",
+            "TIMING_OUT",
+            "TIMED_OUT"
+          ]
+        }
+      }
+    },
+    "PreviewOutputJson": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "CREATED",
+            "VALIDATING",
+            "VALID",
+            "INVALID",
+            "VALIDATION_ERROR",
+            "STARTING",
+            "START_ERROR",
+            "RUNNING",
+            "RUN_ERROR",
+            "FINISHING",
+            "FINISHED",
+            "CANCELLING",
+            "CANCELLED",
+            "TIMING_OUT",
+            "TIMED_OUT"
+          ]
+        },
+        "issues": {
+          "$ref": "#/definitions/IssuesJson"
+        },
+        "batchesOutput": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/StageOutputJson"
+            }
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "RawPreview": {
+      "type": "object",
+      "properties": {
+        "mimeType": {
+          "type": "string"
+        },
+        "previewData": {
+          "type": "string"
+        }
+      }
+    },
+    "StageLibraryExtrasJson": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "libraryId": {
+          "type": "string"
+        },
+        "fileName": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

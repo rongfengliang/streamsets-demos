@@ -1,0 +1,7 @@
+version: "3"
+services:
+   g:
+    build: ./
+    image: dalongrong/streamsets-graphql
+    ports:
+    - "3009:3009"

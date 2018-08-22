@@ -9,3 +9,6 @@ the exaples include pipeline && micro-service:
 - [stream-selector](./stream-selector/README.md)
 - [field-splitter](./field-splitter/README.md)
 - [geoip](./geo/README.md)
+- [graphql-api](./graphql-api/README.md)
+- [data-collector-edge](./data-collector-edge/README.md)
+- [sdc-rpc](./sdc-rpc/README.md)

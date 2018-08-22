@@ -1,0 +1,11 @@
+version: "3"
+services:
+   sets-edge:
+     image: streamsets/datacollector-edge
+     volumes:
+     - "./ms/data:/data"
+     - "./ms/logs:/logs"
+     - "./ms/tmp:/tmp"
+     ports:
+     - "8001:8000"
+     - "18633:18633"
