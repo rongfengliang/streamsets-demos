@@ -12,3 +12,5 @@ include some basic pipeline demos:
 - [graphql-api](./graphql-api/README.md)
 - [data-collector-edge](./data-collector-edge/README.md)
 - [sdc-rpc](./sdc-rpc/README.md)
+- [sdc-rpc](./cratedb/README.md)
+
