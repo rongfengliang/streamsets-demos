@@ -1,19 +1,39 @@
 version: "3"
 services:
-   sets:
-     image: streamsets/datacollector 
-     volumes:
+  sets:
+    image: streamsets/datacollector 
+    volumes:
      - "./ms/data:/data"
      - "./ms/logs:/logs"
      - "./ms/tmp:/tmp"
-     ports:
+    ports:
      - "8000:8000"
      - "18630:18630"
-   redis:
-     image: redis
-     ports:
+  redis:
+    image: redis
+    ports:
      -  "6379:6379"
-   mongodb:
-     image: mongo
-     ports:
+  benthos-in:
+    image: jeffail/benthos
+    environment:
+      INPUT_TYPE: "http_server"
+      INPUT_HTTP_SERVER_ADDRESS: "0.0.0.0:8080"
+      OUTPUT_TYPE: "amqp"
+      OUTPUT_AMQP_URL: "amqp://guest:guest@rabbitmq:5672/appdemo"
+      OUTPUT_AMQP_EXCHANGE: "benthos-exchange"
+      OUTPUT_AMQP_EXCHANGE_TYPE: "direct"
+      OUTPUT_AMQP_KEY: "benthos-key"
+    ports:
+      - "8080:8080"
+  mongodb:
+    image: mongo
+    ports:
      -  "27017:27017"
+  rabbitmq:
+    image: rabbitmq:3.6.14-management
+    ports:
+      - "4369:4369"
+      - "5671:5671"
+      - "5672:5672"
+      - "25672:25672"
+      - "15672:15672"

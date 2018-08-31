@@ -13,4 +13,6 @@ include some basic pipeline demos:
 - [data-collector-edge](./data-collector-edge/README.md)
 - [sdc-rpc](./sdc-rpc/README.md)
 - [cratedb](./cratedb/README.md)
+- [rabbitmq](./rabbitmq/README.md)
+
 
